@@ -1,5 +1,44 @@
+{% extends "base_bootstrap.html" %}
+{% block style %} 
+<style>
+  .center-cropped {
+    width: auto;
+    height: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    overflow: auto;
 
-{% for post in post_list %}
-<h2>{{post.title}}</h2>
-<p>{{post.text | safe}}</p>
-{% endfor %}
+</style>
+{% endblock %}
+
+{% block content %}
+
+    <main class="container">
+      <div class="row mb-4">
+        {% for post in post_list %}
+          <div class="col-lg-4 mb-4">
+            <div class="card"  style="max-width: 540px;">
+              <div class="row g-0">
+                <div class="col-md-4" style="overflow: auto;">
+                  {% if post.image %}
+                    <div class="center-cropped" style="background: url('{{post.image.url}}')"></div>
+                  {% else %}
+                    <img src="" alt="..." class="img-thumbnail">
+                  {% endif %}
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title"><a href="{% url 'pages:post_detail' pk=post.id %}">{{post.title}}</a></h5>
+                    <p class="card-text">... </p>
+                    <p class="card-text"><small class="text-muted">Last update: {{post.updated_at}}</small></p>
+                  </div>
+                </div>
+              </div>
+          </div>
+          </div>
+        {% endfor %}
+      </div>
+    </main>
+
+
+{% endblock content %}

@@ -1,0 +1,10 @@
+{% extends "base_bootstrap.html" %}
+
+{% block content %}
+    <main class="container">
+        <h2>{{post.title}}</h2>
+        <div>{{post.body| safe }}</div>
+    </main>
+
+
+{% endblock content %}
