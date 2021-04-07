@@ -1,9 +1,27 @@
-{% extends "base_bootstrap.html" %}
+{% extends "base/base_bootstrap.html" %}
 
 {% block content %}
     <main class="container">
-        <h2>{{post.title}}</h2>
+        <h1 >
+            {% if post.owner == user %}
+            <span style="float: right;">
+            <a class="text-dark mr-5" href="#"><i class="fas fa-pencil-alt"></i></a>
+            <a class="text-dark" href="{% url 'pages:post_delete' post.id %}"><i class="far fa-trash-alt"></i></a>
+            </span>
+            {% endif %}
+            {{post.title}}
+        </h1>
         <div>{{post.body| safe }}</div>
+
+        {% if post.owner == user %}
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="{{post.image.url}}" class="d-block w-100" alt="...">
+              </div>
+            </div>
+          </div>
+
     </main>
 
 
