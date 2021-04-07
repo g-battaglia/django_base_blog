@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.urls import reverse_lazy
 from .models import Post
-from .owner import OwnerCreateView, OwnerDeleteView
+from .owner import OwnerCreateView, OwnerDeleteView, OwnerUpdateView
 # Create your views here.
 
 class PostListView(ListView):
@@ -21,3 +21,8 @@ class PostCreateView(OwnerCreateView):
 class PostDeleteView(OwnerDeleteView):
     model = Post
     success_url=reverse_lazy('pages:all')
+
+class PostUpdateView(OwnerUpdateView):
+    model = Post
+    fields = ['title', 'body','image',]
+    success_url = reverse_lazy('pages:all')

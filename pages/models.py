@@ -22,6 +22,6 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.title + " - " + self.created_at.strftime("%m/%d/%Y, %H:%M:%S")
+        return self.title + " - " + self.created_at.strftime("%m/%d/%Y, %H:%M")
 
     

@@ -5,7 +5,7 @@
         <h1 >
             {% if post.owner == user %}
             <span style="float: right;">
-            <a class="text-dark mr-5" href="#"><i class="fas fa-pencil-alt"></i></a>
+            <a class="text-dark mr-5" href="{% url 'pages:post_update' post.id %}"><i class="fas fa-pencil-alt"></i></a>
             <a class="text-dark" href="{% url 'pages:post_delete' post.id %}"><i class="far fa-trash-alt"></i></a>
             </span>
             {% endif %}
@@ -13,7 +13,7 @@
         </h1>
         <div>{{post.body| safe }}</div>
 
-        {% if post.owner == user %}
+        {% if post.image %}
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
@@ -21,6 +21,7 @@
               </div>
             </div>
           </div>
+          {% endif %}
 
     </main>
 
