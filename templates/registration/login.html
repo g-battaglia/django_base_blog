@@ -1,0 +1,25 @@
+{% extends "base/base_bootstrap.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+
+  div.form-control {
+    margin: auto;
+    width: 30rem;
+    max-width: 80vw;
+  }
+</style>
+
+<main class="container">
+
+  <div class="form-control p-4 mt-5">
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <input type="submit" class="btn btn-dark mt-4" value="Login" />
+      <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+  </div>
+
+</main>
+{% endblock %}

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 3rd part:
     'tinymce',
+    'crispy_forms',
     # My own:
     'pages',
 ]
@@ -136,3 +137,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # Case insensitive:
 TAGGIT_CASE_INSENSITIVE = True
+
+# Cryspy:
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
