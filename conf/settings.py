@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # 3rd part:
     'tinymce',
     'crispy_forms',
+    'taggit',
     # My own:
     'pages',
 ]

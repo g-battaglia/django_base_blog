@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.urls import reverse_lazy
-from .models import Post
+from .forms import CommentForm
+from .models import Post, Comment
 from .owner import OwnerCreateView, OwnerDeleteView, OwnerUpdateView
 # Create your views here.
 
@@ -12,10 +13,17 @@ class PostListView(ListView):
     
 class PostDetailView(DetailView):
     model = Post
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        comments = Comment.objects.filter(post=self.object).order_by('-updated_at')
+        comment_form = CommentForm()
+        context['comments'] = comments
+        context['comment_form'] = comment_form
+        return context
 
 class PostCreateView(OwnerCreateView):
     model = Post
-    fields = ['title', 'body','image',]
+    fields = ['title', 'body','image', 'tags',]
     success_url = reverse_lazy('pages:all')
 
 class PostDeleteView(OwnerDeleteView):
@@ -24,5 +32,5 @@ class PostDeleteView(OwnerDeleteView):
 
 class PostUpdateView(OwnerUpdateView):
     model = Post
-    fields = ['title', 'body','image',]
+    fields = ['title', 'body','image', 'tags',]
     success_url = reverse_lazy('pages:all')
