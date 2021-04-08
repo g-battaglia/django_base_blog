@@ -2,7 +2,7 @@
 
 {% block content %}
     <main class="container">
-        <h1 class="text-center mb-5 mt-5">
+        <h1 class="text-center my-5">
             {% if post.owner == user %}
             <span style="float: right;">
             <a class="text-dark mr-5" href="{% url 'pages:post_update' post.id %}"><i class="fas fa-pencil-alt"></i></a>
@@ -21,7 +21,7 @@
             </div>
           </div>
         </div>
-        <div class="alert alert-dark tags mt-4 mb-4 " role="alert">
+        <div class="alert alert-dark tags my-4 " role="alert">
           Tags: {% for tag in post.tags.all %} #{{tag}} {% endfor %}
         </div>
           {% endif %}
