@@ -35,6 +35,18 @@
           {% endfor %}
         </div>
 
+        {% if user.is_authenticated %}
+        <p>
+        {% load crispy_forms_tags %}
+        <form method="post" action="{% url 'pages:all' %}">
+            {% csrf_token %}
+            {{ comment_form|crispy }}
+        <input class="mt-4 me-2 btn btn-dark" type="submit" value="Submit">
+        <input class="mt-4 btn btn-dark" type="submit" value="All Post" onclick="window.location.href='{% url 'pages:all' %}';return false;">
+        </form>
+        </p>
+        {% endif %}
+
     </main>
 
 
