@@ -3,15 +3,15 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <main class="container">
-    <p>
-        <form action="" method="post" id="ad_form" enctype="multipart/form-data">
-          {% csrf_token %}
-          {{form.media}}
-          {{ form|crispy }}
-          <input type="submit" class="btn btn-dark mt-4" value="Submit">
-          <input type="submit" class="btn btn-dark mt-4 ml-" value="Cancel" onclick="window.location.href='{% url 'pages:all' %}';return false;">
-        </form>
-      </p>
+  <p>
+    <form action="" method="post" id="ad_form" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{form.media}}
+      {{ form|crispsy }}
+      <input type="submit" class="btn btn-dark mt-4" value="Submit">
+      <input type="submit" class="btn btn-dark mt-4 ml-" value="Cancel" onclick="window.location.href='{% url 'pages:all' %}';return false;">
+    </form>
+  </p>
 </main>
 <script>
   $("#ad_form").submit(function() {

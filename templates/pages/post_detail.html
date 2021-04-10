@@ -22,15 +22,20 @@
           </div>
         </div>
         <div class="alert alert-dark tags my-4 " role="alert">
-          Tags: {% for tag in post.tags.all %} #{{tag}} {% endfor %}
+          Tags: {% for tag in post.tags.all %} <a href="{% url 'pages:tag_list' tag.slug %}">#{{tag}}</a> {% endfor %}
         </div>
           {% endif %}
 
         <div class="comment-section border-top pt-4">
           {% for comment in comments %}
-            <div>
-              <p class="fw-bold mb-0">{{comment.owner}}</p>
-              <p>{{comment.text}}</p>
+            <div class="mb-2">
+              <p class="fw-bold mb-0">{{comment.owner}}:</p>
+              <p class="mb-0">
+              {{comment.text}}
+              {% if user == comment.owner %}
+                <small class="mt-0 ms-2"><a href="{% url 'pages:post_comment_delete' comment.id %}"><i class="fa fa-trash text-dark"></i></a></small>
+              {% endif %}
+              </p>
             </div>
           {% endfor %}
         </div>
@@ -38,16 +43,57 @@
         {% if user.is_authenticated %}
         <p>
         {% load crispy_forms_tags %}
-        <form method="post" action="{% url 'pages:all' %}">
+        <form method="post" action="{% url 'pages:post_comment_create' post.id %}">
             {% csrf_token %}
             {{ comment_form|crispy }}
-        <input class="mt-4 me-2 btn btn-dark" type="submit" value="Submit">
-        <input class="mt-4 btn btn-dark" type="submit" value="All Post" onclick="window.location.href='{% url 'pages:all' %}';return false;">
+        <input class="mt-4 me-2 btn btn-dark" type="submit" value="Submit" id="submit_btn">
+        
+        
+        <!-- Like buttons -->
+
+        <!-- Two hrefs with two stacked icons each - one showing and one hidden -->
+        <a href href="#submit_btn" onclick=
+           "favPost('{% url 'pages:post_dislike' post.id %}', {{ post.id }} );return true;"
+          {% if post.id not in likes %} style="display: none;" {% endif %}
+          id="favorite_star_{{post.id}}"
+          class="btn btn-dark mt-4 me-2"
+          >
+          Dislike
+        </a>
+        <!-- the second href -->
+        <a href="#submit_btn" onclick=
+             "favPost('{% url 'pages:post_like' post.id %}', {{ post.id }} );return true;"
+            {% if post.id in likes %} style="display: none;" {% endif %}
+            id="unfavorite_star_{{post.id}}"
+            class="btn btn-dark mt-4 me-2"
+            >
+          Like
+        </a>
+
+        <!-- End of like buttons -->
+
         </form>
         </p>
         {% endif %}
 
     </main>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+
+    <script>
+      function favPost(url, thing_id) {
+          console.log('Requesting JSON');
+          $.post(url, {},  function(rowz){
+              console.log(url, 'finished');
+              $("#unfavorite_star_"+thing_id).toggle();
+              $("#favorite_star_"+thing_id).toggle();
+          }).fail(function(xhr) {
+              alert('Url failed with '+xhr.status+' '+url);
+          });
+      }
+    </script>
 
 
 {% endblock content %}

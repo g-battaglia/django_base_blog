@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Django non def:
+    'django.contrib.humanize',
     # 3rd part:
     'tinymce',
     'crispy_forms',
