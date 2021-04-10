@@ -52,7 +52,7 @@
         <!-- Like buttons -->
 
         <!-- Two hrefs with two stacked icons each - one showing and one hidden -->
-        <a href href="#submit_btn" onclick=
+        <a href="#submit_btn" onclick=
            "favPost('{% url 'pages:post_dislike' post.id %}', {{ post.id }} );return true;"
           {% if post.id not in likes %} style="display: none;" {% endif %}
           id="favorite_star_{{post.id}}"
