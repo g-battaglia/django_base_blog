@@ -11,6 +11,7 @@ django-taggit = "*"
 django-crispy-forms = "*"
 django-extensions = "*"
 social-auth-app-django = "*"
+whitenoise = "*"
 
 [dev-packages]
 

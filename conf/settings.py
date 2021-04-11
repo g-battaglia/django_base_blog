@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     # Django non def:
     'django.contrib.humanize',
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -143,3 +145,29 @@ TAGGIT_CASE_INSENSITIVE = True
 
 # Cryspy:
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# * Static:
+
+# First:
+# pipenv install whitenoise
+# mkdir static/css
+
+# Then: 
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [ str(BASE_DIR / 'static') ]
+STATIC_ROOT = STATIC_ROOT = str(BASE_DIR / 'staticfiles')
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage' 
+
+# Then:
+# INSTALLED_APPS = [
+#     'whitenoise.runserver_nostatic', # new
+#     'django.contrib.staticfiles',
+#       }
+# MIDDLEWARE = 'whitenoise.middleware.WhiteNoiseMiddleware', # New
+#               'django.middleware.common.CommonMiddleware',
+#
+# Then:
+# python manage.py collectstatic
+# Add in template:
+# {% load static %}
+# <link rel="stylesheet" href="{% static 'css/base.css' %}">

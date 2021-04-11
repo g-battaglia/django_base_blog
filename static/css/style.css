@@ -1,0 +1,26 @@
+a {
+  list-style: none;
+  text-decoration: none;
+}
+
+.navbar-toggler {
+ border: 0;
+}
+
+.img_div {
+  background-color: var(--dark);
+  height: 100%;
+  min-height: 200px;
+  background-size: cover;
+  background-position: 50% 80%;
+  background-repeat: no-repeat;
+}
+
+.img_div_first {
+  background-color: var(--dark);
+  height: 60vh;
+  min-height: 200px;
+  background-size: cover;
+  background-position: 100% 50%;
+  background-repeat: no-repeat;
+}
