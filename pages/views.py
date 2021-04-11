@@ -23,6 +23,7 @@ class PostListView(ListView):
         post_list = Post.objects.order_by('-updated_at')[:10]
         return post_list
 
+# ! DO IT!
 class PostListViewPlusLike(ListView):
     model = Post
     def get(self, request) :
