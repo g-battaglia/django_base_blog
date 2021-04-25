@@ -1,7 +1,7 @@
 {% extends "base/base_bootstrap.html" %}
 
 {% block content %}
-    <main class="container">
+    <main class="container" style="max-width: 75ch;">
         <h1 class="text-center my-5">
             {% if post.owner == user %}
             <span style="float: right;">
@@ -14,10 +14,10 @@
         <div>{{post.body| safe }}</div>
 
         {% if post.image %}
-        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" >
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" style="width: 100%;">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="{{post.image.url}}" class="d-block" alt="..." style="max-height: 500px; overflow: auto;">
+              <img src="{{post.image.url}}" class="d-block" alt="...">
             </div>
           </div>
         </div>

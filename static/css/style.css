@@ -3,6 +3,10 @@ a {
   text-decoration: none;
 }
 
+p {
+  font-size: 1.2rem;
+}
+
 .navbar-toggler {
  border: 0;
 }
