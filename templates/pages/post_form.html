@@ -1,28 +1,28 @@
-
 {% extends "base/base_bootstrap.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-<main class="container">
-  <p>
+  <main class="container">
+    <p>
     <form action="" method="post" id="ad_form" enctype="multipart/form-data">
       {% csrf_token %}
       {{ form.media }}
       {{ form|crispy }}
       <input type="submit" class="btn btn-dark mt-4" value="Submit">
-      <input type="submit" class="btn btn-dark mt-4 ml-" value="Cancel" onclick="window.location.href='{% url 'pages:all' %}';return false;">
+      <input type="submit" class="btn btn-dark mt-4 ml-" value="Cancel"
+             onclick="window.location.href='{% url 'pages:all' %}';return false;">
     </form>
-  </p>
-</main>
-<script>
-  $("#ad_form").submit(function() {
-    console.log('Checking file size');
-    if (window.File && window.FileReader && window.FileList && window.Blob) {
+    </p>
+  </main>
+  <script>
+    $("#ad_form").submit(function () {
+      console.log('Checking file size');
+      if (window.File && window.FileReader && window.FileList && window.Blob) {
         var file = $('#id_{{ form.upload_field_name }}')[0].files[0];
-        if (file && file.size > {{ form.max_upload_limit }} ) {
-            alert("File " + file.name + " of type " + file.type + " must be < {{ form.max_upload_limit_text }}");
-        return false;
+        if (file && file.size > {{ form.max_upload_limit }}) {
+          alert("File " + file.name + " of type " + file.type + " must be < {{ form.max_upload_limit_text }}");
+          return false;
+        }
       }
-    }
-  });
+    });
   </script>
 {% endblock %}

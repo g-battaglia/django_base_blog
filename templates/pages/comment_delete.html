@@ -1,18 +1,18 @@
 {% extends "base/base_bootstrap.html" %} {% block content %}
-<main class="container">
-  <h1>Delete Comment</h1>
+  <main class="container">
+    <h1>Delete Comment</h1>
 
-  <p>Are you sure you want to delete</p>
-  <p>{{ comment.text }}?</p>
+    <p>Are you sure you want to delete</p>
+    <p>{{ comment.text }}?</p>
 
-  <form action="" method="POST">
-    {% csrf_token %}
-    <input type="submit" class="btn btn-primary" value="Yes, delete." />
-    <a
-      href="{% url 'pages:post_detail' comment.post.id %}"
-      class="btn btn-secondary"
+    <form action="" method="POST">
+      {% csrf_token %}
+      <input type="submit" class="btn btn-primary" value="Yes, delete."/>
+      <a
+              href="{% url 'pages:post_detail' comment.post.id %}"
+              class="btn btn-secondary"
       >Cancel</a
-    >
-  </form>
-</main>
+      >
+    </form>
+  </main>
 {% endblock %}

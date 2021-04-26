@@ -2,70 +2,70 @@
 <!-- https://docs.djangoproject.com/en/3.0/ref/contrib/humanize -->
 {% block content %}
 
-<div
-  class="d-flex justify-content-center align-items-center"
-  style="width: 100vw; height: 25vh"
->
-  <h1>The blog</h1>
-</div>
+  <div
+          class="d-flex justify-content-center align-items-center"
+          style="width: 100vw; height: 25vh"
+  >
+    <h1>The blog</h1>
+  </div>
 
-<main class="container">
-  <div class="row mb-4">
-    {% for post in post_list %} {% if forloop.counter == 1 %}
-    <a href="{% url 'pages:post_detail' pk=post.id %}" class="bo">
-      <div class="card text-dark bg-light mb-5">
-        <div class="" style="overflow: auto">
-          {% if post.image %}
-          <div
-            class="img_div_first"
-            style="background-image: url('{{post.image.url}}');"
-          ></div>
-          {% else %}
-          <div class="img_div"></div>
-          {% endif %}
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">...</p>
-          <p class="card-text">
-            <small class="text-muted">Last updated 3 mins ago</small>
-          </p>
-        </div>
-      </div>
-    </a>
-
-    {% else %}
-    <div class="col-xl-4 col-lg-6 col-md-12 mb-4">
-      <a href="{% url 'pages:post_detail' post.id %}" class="bo">
-        <div class="card text-dark bg-light">
-          <div class="row g-0">
-            <div class="col-md-4" style="overflow: auto">
+  <main class="container">
+    <div class="row mb-4">
+      {% for post in post_list %} {% if forloop.counter == 1 %}
+        <a href="{% url 'pages:post_detail' pk=post.id %}" class="bo">
+          <div class="card text-dark bg-light mb-5">
+            <div class="" style="overflow: auto">
               {% if post.image %}
-              <div
-                class="img_div"
-                style="background-image: url('{{post.image.url}}');"
-              ></div>
+                <div
+                        class="img_div_first"
+                        style="background-image: url('{{ post.image.url }}');"
+                ></div>
               {% else %}
-              <div class="img_div"></div>
+                <div class="img_div"></div>
               {% endif %}
             </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">{{post.title}}</h5>
-                <p class="card-text">...</p>
-                <p class="card-text">
-                  <small class="text-muted"
-                    >Last update: {{post.updated_at | naturaltime }}</small
-                  >
-                </p>
-              </div>
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">...</p>
+              <p class="card-text">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </p>
             </div>
           </div>
+        </a>
+
+      {% else %}
+        <div class="col-xl-4 col-lg-6 col-md-12 mb-4">
+          <a href="{% url 'pages:post_detail' post.id %}" class="bo">
+            <div class="card text-dark bg-light">
+              <div class="row g-0">
+                <div class="col-md-4" style="overflow: auto">
+                  {% if post.image %}
+                    <div
+                            class="img_div"
+                            style="background-image: url('{{ post.image.url }}');"
+                    ></div>
+                  {% else %}
+                    <div class="img_div"></div>
+                  {% endif %}
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text">...</p>
+                    <p class="card-text">
+                      <small class="text-muted"
+                      >Last update: {{ post.updated_at | naturaltime }}</small
+                      >
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
         </div>
-      </a>
+      {% endif %} {% endfor %}
     </div>
-    {% endif %} {% endfor %}
-  </div>
-</main>
+  </main>
 
 {% endblock content %}
